@@ -77,3 +77,43 @@
                     ]
                 }
             }
+
+## Perbaiki Struktur JSON Ketika Error Validasi Request
+
+    Todo:
+    1.  buat ErrorResponseJson
+        - Traits/ErrorResponseJson.php
+        - kemudian setup code ErrorResponseJson
+    2.  Requests/Auth/SignUpRequest.php
+        - pasang ErrorResponseJson
+    3.  setup tambahan pada ppostman
+        - pada bagian headers pasang Accept dengan nilai aplication/json
+          ini dilakukan agar tidak redirect ke tampilan web
+    4.  pengujian pada postman
+        - POST http://localhost:8000/api/sign-up
+            body -> raw -> json:
+            {
+                "name": "",
+                "email": "",
+                "password": "",
+            }
+        - kosongkan semua/name/email, kemudian coba send
+        - response kan menampilkan pesan :
+            {
+                "meta": {
+                    "code": 422,
+                    "status": "error",
+                    "message": {
+                        "name": [
+                            "The name field is required."
+                        ],
+                        "email": [
+                            "The email field is required."
+                        ],
+                        "password": [
+                            "The password field is required."
+                        ]
+                    }
+                },
+                "data": []
+            }
