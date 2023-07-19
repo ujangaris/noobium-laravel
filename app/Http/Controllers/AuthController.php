@@ -37,7 +37,7 @@ class AuthController extends Controller
                 'status' => 'success',
                 'message' => 'Cannot Created successfully.',
             ],
-            'daata' => [
+            'data' => [
                 'user'=> [
                     'name' => $user->name,
                     'email' => $user->email,

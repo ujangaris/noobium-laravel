@@ -23,3 +23,19 @@
         - tambahkan fillable picture
     2.  route/api.php
         - buat route sign-up
+
+## TestAPI Endpoint sign-up dengan Postman
+
+    Todo:
+    1. buka postman
+        POST http://localhost:8000/api/sign-up
+        body -> raw -> json:
+        {
+            "name": "Test",
+            "email": "test@gmail.com",
+            "password": "admin0k8"
+        }
+
+        kemudian send
+
+        hasil akan menampilkan response berhasil seperti yang kita buat pada AuthController
