@@ -15,3 +15,11 @@
         - autentikasi user dengan token
         - jika tokennya tidak ada(response gagal)
         - jika tokennya ada(response berhasil)
+
+## Update Fillable dan Buat Endpoint untuk Sign Up
+
+    Todo:
+    1.  app/Models/User.php
+        - tambahkan fillable picture
+    2.  route/api.php
+        - buat route sign-up
