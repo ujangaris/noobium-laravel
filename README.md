@@ -184,3 +184,27 @@
             - copy access token dari endpoint login kemudian pastekan pada Authorization:BearerToken
         - response kan menampilkan response success sign out
         - jika coba melakukan request sign-out lagi, response akan menampilkan "message": "Unauthenticated."
+
+## Memperbaiki Response Unauthenticated
+
+    Todo:
+    1.  Exceptions/Handler.php
+        - function unauthenticated
+        - import dan pasang AuthenticationException
+        - pasang condition dan tampilkan pada response jika request yang diminta tidak terotentikasi
+    2.  Test API Sign Out di Postman
+        - pertama login dulu POST http://localhost:8000/api/sign-in
+        - POST http://localhost:8000/api/sign-out
+            - seting Authorization:BearerToken
+            - seting juga headers Accept: application/json
+            - copy access token dari endpoint login kemudian pastekan pada Authorization:BearerToken
+        - response kan menampilkan response success sign out
+        - jika coba melakukan request sign-out lagi, response akan menampilkan :
+            {
+                "meta": {
+                    "code": 401,
+                    "status": "error",
+                    "message": "Unauthenticated."
+                },
+                "data": []
+            }
