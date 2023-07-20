@@ -117,3 +117,16 @@
                 },
                 "data": []
             }
+
+## Buat function Sign In dan endpoint Sign In di routes
+
+    Todo:
+    1.  Controllers/AuthController.php
+        - function signIn
+        - otentikasi data pengguna dengan data yang diterima dari http,
+          jika otentikasi berhasil akan menghasilkan token yang disimpan di variable token
+        - buat kondisi jika otentikasi gagal(token tidak ada)
+        - jika otentikasi berhasil(token ada) simpan data pengguna
+        - kirim response success ke client
+    2.  routes/api.php
+        - endpoint sign-in
