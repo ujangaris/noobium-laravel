@@ -152,7 +152,7 @@
         - import dan pasang SignRequest
         - pada $token = auth()->attempt($request->all());
           all() rubah jd $token = auth()->attempt($request->validated());
-    4.  Test API Sign di Postman
+    4.  Test API Sign In di Postman
         - POST http://localhost:8000/api/sign-in
             body -> raw -> json:
                 {
@@ -162,3 +162,25 @@
         - response kan menampilkan data pengguna :
         - coba juga kosongkan semua/name/email, kemudian coba send
           akan menampilkan error sesuai yang kita buat pada form request dan ErrorResponseJson
+
+## Buat function Sign Out ,endpoint Sign Out di routes & testAPI Sign Out
+
+    Todo:
+    1.  Controllers/AuthController.php
+        - function signIn
+        - otentikasi data pengguna dengan data yang diterima dari http,
+          jika otentikasi berhasil akan menghasilkan token yang disimpan di variable token
+        - buat kondisi jika otentikasi gagal(token tidak ada)
+        - jika otentikasi berhasil(token ada) simpan data pengguna
+        - kirim response success ke client
+    2.  routes/api.php
+        - pasang dulu middleware auth:api
+          bungkus endpoint sign-out didalamnya
+    3.  Test API Sign Out di Postman
+        - pertama login dulu POST http://localhost:8000/api/sign-in
+        - POST http://localhost:8000/api/sign-out
+            - seting Authorization:BearerToken
+            - seting juga headers Accept: application/json
+            - copy access token dari endpoint login kemudian pastekan pada Authorization:BearerToken
+        - response kan menampilkan response success sign out
+        - jika coba melakukan request sign-out lagi, response akan menampilkan "message": "Unauthenticated."

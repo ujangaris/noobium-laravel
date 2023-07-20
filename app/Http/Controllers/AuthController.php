@@ -96,4 +96,19 @@ class AuthController extends Controller
             ]
         ]);
     }
+
+    // function signOut
+    public function signOut()
+    {
+        auth()->logout();
+        return response()->json([
+            'meta' => [
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Sign Out Successfully!',
+
+            ],
+            'data' => []
+        ]);
+    }
 }
