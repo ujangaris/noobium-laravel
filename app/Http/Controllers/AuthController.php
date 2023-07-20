@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\SignInRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\SignUpRequest;
@@ -56,10 +57,10 @@ class AuthController extends Controller
     }
 
     //function signIn
-    public function signIn(Request $request)
+    public function signIn(SignInRequest $request)
     {
 
-        $token = auth()->attempt($request->all());// otentikasi data pengguna dengan data yang diterima dari http, jika otentikasi berhasil akan menghasilkan token yang disimpan di variable token
+        $token = auth()->attempt($request->validated());// otentikasi data pengguna dengan data yang diterima dari http, jika otentikasi berhasil akan menghasilkan token yang disimpan di variable token
 
         // buat kondisi jika otentikasi gagal(token tidak ada)
         if (!$token) {

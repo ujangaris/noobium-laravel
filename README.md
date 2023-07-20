@@ -130,3 +130,35 @@
         - kirim response success ke client
     2.  routes/api.php
         - endpoint sign-in
+
+## Buat Form Request untuk Sign In & TestAPI Sign In
+
+    Todo:
+    1.  Buta form request
+        - php artisan make:request Auth/SignInRequest
+        - otentikasi data pengguna dengan data yang diterima dari http,
+          jika otentikasi berhasil akan menghasilkan token yang disimpan di variable token
+        - buat kondisi jika otentikasi gagal(token tidak ada)
+        - jika otentikasi berhasil(token ada) simpan data pengguna
+        - kirim response success ke client
+    2.  Requests/Auth/SignInRequest.php
+        - import dan pasang ErrorResponseJson
+        - rubah public function authorize()
+            {
+                return true;//yang tdnya false jd true
+            }
+        - kemudian isi rulesnya :email & password
+    3.  Controllers/AuthController.php
+        - import dan pasang SignRequest
+        - pada $token = auth()->attempt($request->all());
+          all() rubah jd $token = auth()->attempt($request->validated());
+    4.  Test API Sign di Postman
+        - POST http://localhost:8000/api/sign-in
+            body -> raw -> json:
+                {
+                    "name": "test@gmail.com",
+                    "email": "password yang terdaftar",// diisi dengan password yang terdaftar
+                }
+        - response kan menampilkan data pengguna :
+        - coba juga kosongkan semua/name/email, kemudian coba send
+          akan menampilkan error sesuai yang kita buat pada form request dan ErrorResponseJson
